@@ -1,0 +1,66 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3rem;
+
+  z-index: 10;
+
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+header > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  max-width: 520px;
+  height: 100%;
+
+  padding: 0.5rem 1.25rem;
+  margin: 0 auto;
+}
+
+header h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spacer {
+  height: 3rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+
+  padding: 1.25rem;
+}
+
+.movie-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card > img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
