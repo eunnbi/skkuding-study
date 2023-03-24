@@ -1,0 +1,99 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+}
+
+.movie-title {
+  font-weight: bold;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.row {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.movie-poster {
+  width: 300px;
+  height: 450px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+html.dark .movie-poster {
+  box-shadow: 0 4px 6px -1px black, 0 2px 4px -2px black;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.column > p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.genre-list li {
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 5px 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+html.dark .genre-list li {
+  box-shadow: 1px 5px 5px 0 black;
+}
+
+.overview-wrapper h3 {
+  margin-bottom: 0.5rem;
+
+  font-weight: bold;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.overview-wrapper p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.go-back-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.go-back-button:hover {
+  color: white;
+  background-color: black;
+}
+
+html.dark .go-back-button {
+  color: white;
+  background-color: black;
+}
+
+@media screen and (max-width: 520px) {
+  .row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .movie-poster {
+    width: 100%;
+    height: calc(150vw - 60px);
+  }
+}
