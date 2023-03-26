@@ -58,9 +58,38 @@
   - margin과 padding 값을 % 단위로 사용할 때, 상하좌우의 방향에 관계없이 모두 요소의 width 값을 기준으로 값이 결정된다.
 - [Box Sizing](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing) 속성은 요소의 너비와 높이를 어떻게 계산할지 정의하는 속성이다. (`content-box`, `border-box`)
 
+## Display
+
+- `display` 속성은 요소를 `block` 요소 혹은 `inline` 요소로 처리할지 아니면 `grid`나 `flex` 처럼 자식 요소를 배치할 때 사용할 레이아웃을 결정한다.
+- 기본적으로 HTML 요소는 Block 레벨 요소와 Inline 레벨 요소로 나뉜다.
+  - 블록 레벨 요소 (Block): div, h1 ~ h6, p, ul, li, table...
+    - 부모 요소의 가로 영역에 맞게 꽉 채워져 표현되는 요소
+    - 양옆으로 다른 요소가 배치되지 않게 박스를 생성하므로 박스의 위아래로 줄 바꿈이 생김.
+    - 블록 레벨 요소는 일반적인 모든 요소(블록, 인라인 레벨 등)를 포함할 수 있다.
+    - [Block-level elements - MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)
+  - 인라인 레벨 요소 (Inline): span, i, img, em, strong, a ...
+    - 하나의 라인 안에서 자신의 내용만큼의 박스를 만드는 요소
+    - 자신의 내용만큼만 공간을 차지하는 요소
+    - 라인의 흐름을 끊지 않고 요소 기준으로 줄 바꿈이 되지 않아 양옆으로 다른 인라인 요소들이 자리할 수 있다.
+    - 인라인 레벨 요소는 블록 레벨 요소를 포함할 수 없다.
+      - 예외: HTML5에서 `<a>`는 인라인 레벨 요소지만 자손으로 블록 레벨 요소를 가질 수 있다.
+    - [Inline elements - MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)
+- display와 box model의 관계
+  | display | width | height | margin | padding | border |
+  | :-------: | :-----: | :------: | :------: | :-------: | :------: |
+  | block | O | O | O | O | O |
+  | inline | X | X | 좌/우 | O | O |
+- 만약 display 속성을 flex나 grid로 지정하면, 자식 요소들은 자동으로 block 요소로 치리된다.
+
 ## Position
 
-## Flex, Grid
+- position 속성은 요소를 배치하는 방법을 지정한다. top, right, bottom, left 속성이 요소를 배치할 최종 위치를 결정한다.
+- `static`: 기본값으로, 일반적인 문서의 흐름에 따라 요소를 배치한다.
+  - top, right, button, left 속성을 무시한다.
+- `relative`: 요소를 일반적인 문서 흐름에 따라 배치하고, 자신을 기준으로 top, right, button, left 속성값에 따라 위치를 정한다.
+- `absolute`: position 속성값이 static이 아닌 조상 요소를 기준으로 top, right, button, left 속성값에 따라 위치를 정한다. 요소를 일반적인 문서 흐름에서 제거한다. 만약 position 속성값이 static이 아닌 조상 요소가 없다면, 최상위 요소인 html 요소를 기준으로 위치를 결정한다.
+- `fixed`: 뷰포트(브라우저의 창)를 기준으로 top, right, button, left 속성값에 따라 배치된다. 요소를 일반적인 문서 흐름에서 제거한다. 화면 스크롤 관계없이 항상 정해진 위치에 요소가 나타난다.
+- 참고: [Position - CSS](https://developer.mozilla.org/ko/docs/Web/CSS/position)
 
 ## vw, vh, vmin, vmax, em, rem 단위
 
@@ -101,4 +130,107 @@
 - 만약 부모 요소의 폰트 사이즈를 rem 단위로 지정했다면 html 폰트 사이즈에 따라 부모 요소의 폰트 사이즈가 변경된다.
 - 분기점마다 html의 폰트 크기만 변경하면 하위 요소들의 폰트 크기를 따로 변경하지 않아도 된다.
 
-### Media Query
+## Media Query
+
+- 미디어 매체에 따라 다른 스타일을 적용할 수 있게 한다.
+- 동일한 웹 페이지를 다양한 환경의 사용자들에게 최적화된 경험을 제공할 수 있게 해준다.
+- 반응형 웹 사이트 제작에 반드시 필요한 기술이다.
+
+```
+@media mediaqueries { /_ style rules _/}
+```
+
+- 미디어 타입: all, braille, embossed, handheld, print, projection, screen, speech, tty, tv
+  - 화면을 출력하는 디스플레이가 있는 미디어들은 대부분 screen에 속한다.
+  - print: 인쇄
+  - all : 모든 미디어 타입
+- 미디어 특성 : width, height, device-width, device-height, orientation, aspect-ratio, device-aspect-ratio, color, color-index, monochrome, resolution, scan, grid
+  - width : 뷰포트의 너비 (브라우저 창의 너비)
+  - orientation: 세로모드 (portrait) / 가로모드 (landscape)
+
+**Example**
+
+```css
+/* 미디어 타입이 screen이면 적용 */
+@media screen {
+}
+
+/* 미디어 타입이 screen이고 width가 768px 이상이면 적용. */
+@media screen and (min-width: 768px) {
+}
+
+/* width가 768px 이상이고 1024px 이하이면 적용
+   and는 연결된 모든 표현식이 참이면 적용된다. */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+/* 쉼표로 연결된 미디어 쿼리 중 하나라도 참이면 적용된다. */
+@media screen and (min-width: 768px), screen and (orientation: portrait), ... {
+}
+
+/* not 키워드는 하나의 media_query 전체를 부정합니다.  
+  → not (screen and (min-width: 768px)) */
+@media not screen and (min-width: 768px) {
+}
+
+/* 첫 번째 미디어 쿼리에만 not 키워드가 적용되며, 
+두 번째 미디어 쿼리(print)에는 영향이 없다. */
+@media not screen and (min-width: 768px), print {
+}
+```
+
+### 모바일과 데스크탑, 누가 먼저? 🤔
+
+- 미디어 쿼리의 분기점으로 대부분 width 값을 사용하는데, 이때 min을 쓸지 max를 쓸지 고민될 때가 있다.
+
+**Mobile First**
+
+```css
+.title {
+  font-size: 12px;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 18px;
+  }
+}
+```
+
+**Desktop First**
+
+```css
+.title {
+  font-size: 18px;
+}
+
+@media (max-width: 1023px) {
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 639px) {
+  .title {
+    font-size: 12px;
+  }
+}
+```
