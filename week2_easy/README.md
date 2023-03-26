@@ -41,7 +41,7 @@
 
 ### 자바스크립트로 DOM 조작하기
 
-#### HTML 요소 찾기
+#### 1. HTML 요소 찾기
 
 **document.getElementbyId("")**
 
@@ -58,7 +58,6 @@
 ```
 // class 이름에 'red'와 'blue' 모두를 포함하는 element를 리턴한다.
 document.getElementsByClassName("red blue");
-
 ```
 
 **document.getElementsByTagName("div")**
@@ -95,7 +94,7 @@ const el = document.querySelector("div.user-panel.main input[name=login]");
 - 앞서 보았던 `document.querySelector("")`와 사용법은 동일하다.
 - 다만 `document.querySelector("")`는 첫 번째 element만을 반환했다면, `document.querySelectorAll("")`은 인자로 전달한 CSS 선택자로 찾은 모든 element 목록을 리턴한다.
 
-#### HTML 요소 추가하기
+#### 2. HTML 요소 추가하기
 
 **document.createElement(tagName)**
 
@@ -118,7 +117,7 @@ const el = document.querySelector("div.user-panel.main input[name=login]");
 
 - `Element`의 첫번째 자식으로 인수로 전달받은 노드나 문자열을 추가한다.
 
-#### 클래스명
+#### 3. 클래스명
 
 **className vs classList**
 
@@ -188,7 +187,7 @@ darkModeBtn.addEventListener("click", function () {
 
 - 인수로 전달받은 클래스명이 `classList`에 있다면 해당 클래스명을 제거하고 없다면 추가한다.
 
-#### innerHTML, innerText, textContent
+#### 4. innerHTML, innerText, textContent
 
 - innerHTML과 innerText는 Element의 속성이고, textContent는 Node의 속성이다.
 - innerHTML: Element 내의 HTML, XML
