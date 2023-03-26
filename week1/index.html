@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
+<!DOCTYPE html> <!-- HTML5 버전으로 작성된 HTML 파일임을 선언 -->
+<html lang="en"> <!-- 최상위 요소  -->
+  <head> <!-- 웹 브라우저에 직접적으로 표시되지 않는 메타데이터를 정의한다. -->
+    <meta charset="UTF-8" /> <!-- 문자 인코딩 방식 -->
+    <!-- Viewport Meta Tag: 사용자가 시각적으로 볼 수 있는 웹 페이지 영역(viewport)을 정의함. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 외부 리소스 연결(href) 및 현재 문서와의 관계(rel)를 명시 -->
     <link rel="stylesheet" href="./styles/base.css" />
     <link rel="stylesheet" href="./styles/index.css" />
-    <title>Home | Movie App</title>
+    <title>Home | Movie App</title> <!-- 문서의 제목 (브라우저의 제목 표시줄에 나타남) -->
   </head>
-  <body>
-    <header>
+  <body> <!-- 웹 브라우저에 표시되는 문서의 구조 및 내용을 정의한다. -->
+    <header> <!-- Semantic Tag -->
       <div>
-        <h1>Movie App</h1>
+        <h1>Movie App</h1> <!-- Heading Tag (h1 ~ h6) -->
         <button class="search-button">
           <svg viewBox="0 0 512 512" width="1.2em" height="1.2em">
             <path
@@ -23,8 +24,8 @@
       </div>
     </header>
     <div class="spacer"></div>
-    <main>
-      <a href="movie.html" class="movie-card">
+    <main> <!-- Semantic Tag -->
+      <a href="movie.html" class="movie-card"> <!-- Anchor Tag -->
         <img
           src="https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg"
           alt="Black Panther: Wakanda Forever poster"
@@ -53,6 +54,10 @@
           src="https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg"
           alt="Black Panther: Wakanda Forever poster"
         />
+        <!-- 
+          <img> 태그의 alt 속성은 src 속성값의 오류, 시각 장애인용 스크린 리더의 사용 등의 이유로 사용자가 이미지를 
+          볼 수 없을 때 해당 이미지를 대체할 텍스트를 명시한다. 텍스트는 간단하지만 이미지 설명이 담겨야 한다.
+        -->
       </a>
     </main>
   </body>

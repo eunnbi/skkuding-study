@@ -1,3 +1,4 @@
+/* @import 구문은 다른 스타일 시트에서 스타일 규칙을 가져올 때 쓰인다. */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 
 * {
