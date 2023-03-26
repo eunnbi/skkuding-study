@@ -347,19 +347,22 @@ const dummyData = {
 };
 
 const main = document.querySelector("main");
+/* 영화 리스트 렌더링 */
 const renderMovieList = (movieList) => {
   main.innerHTML = "";
-  movieList.forEach((movie) => {
-    const movieCard = document.createElement("a");
-    movieCard.href = `movie.html`;
-    movieCard.className = "movie-card";
-    const poster = document.createElement("img");
-    poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-    poster.alt = `${movie.title} poster`;
-    movieCard.appendChild(poster);
+  // forEach 메서드: 배열의 각 요소마다 인자로 전달받은 콜백함수 실행
+  movieList.forEach((movie) => { 
+    const movieCard = document.createElement("a"); // HTML Anchor Element 생성
+    movieCard.href = `movie.html`; // href 속성 지정
+    movieCard.className = "movie-card"; // class 지정
+    const poster = document.createElement("img"); // HTML Image Element 생성
+    poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`; // src 속성 지정
+    poster.alt = `${movie.title} poster`;  // alt 속성 지정
+    movieCard.appendChild(poster); // 마지막 자식 요소 추가
     main.appendChild(movieCard);
   });
 };
+
 
 const searchButton = document.querySelector("button.search-button");
 const searchBarWrapper = document.querySelector("div.search-bar-wrapper");
@@ -367,8 +370,8 @@ const searchInput = document.querySelector("input.search-input");
 const headerCenter = document.querySelector("header > div.header-center");
 const backButton = document.querySelector("button.back-button");
 searchButton.addEventListener("click", () => {
-  searchBarWrapper.classList.remove("hidden");
-  headerCenter.classList.add("hidden");
+  searchBarWrapper.classList.remove("hidden"); // 요소의 class 목록에서 "hidden" 클래스가 있다면 제거
+  headerCenter.classList.add("hidden"); // 요소의 class 목록에서 "hidden" 클래스가 없다면 추가
   searchInput.value = "";
   window.scrollTo({
     top: 0,
@@ -380,11 +383,13 @@ backButton.addEventListener("click", () => {
   headerCenter.classList.remove("hidden");
   renderMovieList(dummyData.results);
 });
-searchInput.addEventListener("input", (e) => {
+/* 검색 기능 */
+searchInput.addEventListener("input", (e) => { // 이벤트 핸들러의 인수로 이벤트 객체가 전달된다. (README 참고)
+  // filter 메서드: 배열의 각 요소에 대해 콜백함수를 실행하여 true를 반환한 요소들만 있는 새로운 배열 반환
   const results = dummyData.results.filter(
     (movie) =>
-      movie.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-      e.target.value.toLowerCase().includes(movie.title.toLowerCase())
+      movie.title.toLowerCase().includes(e.target.value.toLowerCase()) || // toLowerCase 메서드: 소문자로 변환한 문자열 반환
+      e.currentTarget.value.toLowerCase().includes(movie.title.toLowerCase()) // includes 메서드: 인자로 받은 문자열을 포함하는지 true/false 반환
   );
   renderMovieList(results);
 });
