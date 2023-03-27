@@ -1,5 +1,6 @@
 /* 다크모드 기능 구현 */
 const themeButton = document.querySelector("button.theme-button");
+
 const KEY = "theme";
 // click 이벤트 리스너 추가
 themeButton.addEventListener("click", () => {
@@ -7,7 +8,8 @@ themeButton.addEventListener("click", () => {
   if (document.documentElement.classList.contains("dark")) { // html 요소의 class 목록에 "dark" 클래스가 포함되었는지 확인
     localStorage.setItem(KEY, JSON.stringify("light")); // localStorage API
     document.documentElement.classList.remove("dark");
-    localStorage.setItem(KEY, JSON.stringify("dark")); // JSON.stringfy 메서드: JavaScript 값을 JSON 문자열로 변환한다.
+  } else {
+    localStorage.setItem(KEY, JSON.stringify("dark"));  // JSON.stringfy 메서드: JavaScript 값을 JSON 문자열로 변환한다.
     document.documentElement.classList.add("dark");
   }
 });
