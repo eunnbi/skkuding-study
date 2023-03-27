@@ -1,11 +1,32 @@
 export default class Component {
-  parentElement = document.querySelector("div#app");
-  constructor(templateId) {
-    this.templateElement = document.querySelector(`template#${templateId}`);
-    const importedNode = document.importNode(
-      this.templateElement.content,
-      true
-    );
-    this.parentElement.appendChild(importedNode);
+  $target;
+  props;
+  state;
+  constructor($target, position = "beforeend", props = {}) {
+    this.$target = $target;
+    this.position = position;
+    this.props = props;
+    this.setup();
+    this.render();
+    this.mounted();
+  }
+  template() {
+    return "";
+  }
+  setup() {}
+  mounted() {}
+  updated() {}
+  render() {
+    this.$target.insertAdjacentHTML(this.position, this.template());
+  }
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    if (this.position === "beforeend") {
+      this.$target.removeChild(this.$target.lastChild);
+    } else {
+      this.$target.removeChild(this.$target.firstChild);
+    }
+    this.render();
+    this.updated();
   }
 }

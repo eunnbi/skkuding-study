@@ -8,6 +8,8 @@
   --button-text-color: black;
   --gray-bg-color: #eaeaea;
   --placeholder-text-color: #7b7b7b;
+  --theme-button-bg-color: #f29f21;
+  --theme-button-translate: translateX(3.6px);
 }
 
 :root.dark {
@@ -18,6 +20,8 @@
   --button-text-color: white;
   --gray-bg-color: #545454;
   --placeholder-text-color: #acacac;
+  --theme-button-bg-color: #17161d;
+  --theme-button-translate: translate(3.6px, 110%);
 }
 
 * {
@@ -57,10 +61,6 @@ li {
   list-style: none;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .theme-button {
   position: fixed;
   bottom: 0.5rem;
@@ -75,11 +75,7 @@ li {
   padding: 0.25rem;
 
   border-radius: 1rem;
-  background-color: #f29f21;
-}
-
-html.dark .theme-button {
-  background-color: #17161d;
+  background-color: var(--theme-button-bg-color);
 }
 
 .theme-button .circle {
@@ -93,12 +89,8 @@ html.dark .theme-button {
   border-radius: 50%;
   background-color: white;
 
-  transform: translateX(3.6px);
+  transform: var(--theme-button-translate);
   transition: all 0.15s ease-in-out;
-}
-
-html.dark .theme-button .circle {
-  transform: translate(3.6px, 110%);
 }
 
 .theme-button svg {

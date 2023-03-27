@@ -3,28 +3,27 @@ import HomePage from "./pages";
 import MoviePage from "./pages/movie";
 
 class Router {
-  parentElement = document.querySelector("div#app");
-  constructor() {
+  constructor($root) {
+    this.$root = $root;
     window.addEventListener("popstate", () => {
       this.route();
     });
   }
   route() {
+    this.$root.innerHTML = "";
     if (location.pathname === "/") {
-      this.parentElement.innerHTML = "";
-      new HomePage();
+      new HomePage(this.$root, "afterbegin");
     } else if (location.pathname.includes("/movie")) {
       window.scrollTo({
         top: 0,
       });
-      this.parentElement.innerHTML = "";
       const arr = location.pathname.split("/");
       const id = arr[arr.length - 1];
-      new MoviePage(id);
+      new MoviePage(this.$root, "afterbegin", { id });
     }
-    new ThemeButton();
+    new ThemeButton(this.$root);
   }
 }
 
-const router = new Router();
+const router = new Router(document.querySelector("#app"));
 export default router;

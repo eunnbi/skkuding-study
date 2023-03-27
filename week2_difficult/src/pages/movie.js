@@ -4,36 +4,50 @@ import { genres } from "../data/genres";
 import "../styles/movie.css";
 
 export default class MoviePage extends Component {
-  constructor(id) {
-    super("movie-page");
-    this.movie = movieList.results.find((item) => item.id === Number(id));
-    document.title = `${this.movie.title} | Movie App`;
-    this.movieTitle = document.querySelector("h1.movie-title");
-    this.overview = document.querySelector("p.overview");
-    this.moviePoster = document.querySelector("img.movie-poster");
-    this.releaseDate = document.querySelector("p.movie-release-date");
-    this.voteAverage = document.querySelector("p.movie-vote-average");
-    this.genreList = document.querySelector("ul.genre-list");
-    this.goBackButton = document.querySelector("button.go-back-button");
-    this.configure();
+  setup() {
+    this.state = movieList.results.find(
+      (item) => item.id === Number(this.props.id)
+    );
+    document.title = `${this.state.title} | Movie App`;
   }
-  configure() {
-    this.movieTitle.textContent = this.movie.title;
-    this.overview.textContent = this.movie.overview;
-    this.moviePoster.src = `https://image.tmdb.org/t/p/w500${this.movie.poster_path}`;
-    this.moviePoster.alt = `${this.movie.title} poster`;
-    this.releaseDate.textContent = `📅 ${this.movie.release_date}`;
-    this.voteAverage.textContent = `⭐ ${this.movie.vote_average}`;
-    this.movie.genre_ids.forEach((id) => {
-      const genre = genres.find((genre) => genre.id === id);
-      if (genre) {
-        const li = document.createElement("li");
-        li.textContent = genre.name;
-        this.genreList.appendChild(li);
-      }
-    });
-    this.goBackButton.addEventListener("click", () => {
-      window.history.back();
-    });
+  mounted() {
+    document
+      .querySelector("button.go-back-button")
+      .addEventListener("click", () => {
+        window.history.back();
+      });
+  }
+  template() {
+    return `<main class="movie-page-main">
+    <h1 class="movie-title">${this.state.title}</h1>
+    <div class="row">
+      <img
+        class="movie-poster"
+        src="https://image.tmdb.org/t/p/w500${this.state.poster_path}"
+        alt="${this.state.title} poster"
+      />
+      <div class="column">
+        <span class="movie-release-date">📅 ${this.state.release_date}</span>
+        <span class="movie-vote-average">⭐ ${this.state.vote_average}</span>
+        <ul class="genre-list">
+         ${this.state.genre_ids
+           .map((id) => {
+             const genre = genres.find((genre) => genre.id === id);
+             if (genre) {
+               return `<li>${genre.name}</li>`;
+             }
+           })
+           .join("")}
+        </ul>
+      </div>
+    </div>
+    <div class="overview-wrapper">
+      <h3>📖 Overview</h3>
+      <p class="overview">
+        ${this.state.overview}
+      </p>
+    </div>
+    <button class="go-back-button">Go Back</button>
+  </main>`;
   }
 }
