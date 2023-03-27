@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // nodejs에서 export 하는 방법
 module.exports = {
   mode: "development",
-  entry: "./src/app.js", // dependency graph의 시작 파일 (모듈)
+  entry: "./src/app.js", // 번들링을 위해 필요한 최초 진입점
   output: {
     // 번들된 파일의 위치와 파일명 지정
     path: path.resolve(__dirname, "dist"),

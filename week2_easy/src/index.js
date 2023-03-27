@@ -351,18 +351,17 @@ const main = document.querySelector("main");
 const renderMovieList = (movieList) => {
   main.innerHTML = "";
   // forEach 메서드: 배열의 각 요소마다 인자로 전달받은 콜백함수 실행
-  movieList.forEach((movie) => { 
+  movieList.forEach((movie) => {
     const movieCard = document.createElement("a"); // HTML Anchor Element 생성
     movieCard.href = `movie.html`; // href 속성 지정
     movieCard.className = "movie-card"; // class 지정
     const poster = document.createElement("img"); // HTML Image Element 생성
     poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`; // src 속성 지정
-    poster.alt = `${movie.title} poster`;  // alt 속성 지정
+    poster.alt = `${movie.title} poster`; // alt 속성 지정
     movieCard.appendChild(poster); // 마지막 자식 요소 추가
     main.appendChild(movieCard);
   });
 };
-
 
 const searchButton = document.querySelector("button.search-button");
 const searchBarWrapper = document.querySelector("div.search-bar-wrapper");
@@ -388,7 +387,7 @@ searchInput.addEventListener("input", (e) => { // 이벤트 핸들러의 인수�
   // filter 메서드: 배열의 각 요소에 대해 콜백함수를 실행하여 true를 반환한 요소들만 있는 새로운 배열 반환
   const results = dummyData.results.filter(
     (movie) =>
-      movie.title.toLowerCase().includes(e.target.value.toLowerCase()) || // toLowerCase 메서드: 소문자로 변환한 문자열 반환
+      movie.title.toLowerCase().includes(e.currentTarget.value.toLowerCase()) || // toLowerCase 메서드: 소문자로 변환한 문자열 반환
       e.currentTarget.value.toLowerCase().includes(movie.title.toLowerCase()) // includes 메서드: 인자로 받은 문자열을 포함하는지 true/false 반환
   );
   renderMovieList(results);
