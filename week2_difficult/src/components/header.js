@@ -43,6 +43,9 @@ export default class Header extends Component {
     document
       .querySelector("button.search-button")
       .addEventListener("click", () => this.showSearchBar());
+    /*addEventListener 함수의 두번째 인자를 this.showSearchBar로 전달하면
+    showSearchBar 함수 내부의 this는 addEventListener 메서드를 호출한 HTML Element를 가리킨다.
+    하지만, 화살표 함수는 this binding을 하지 않기 때문에 this는 상위 컨텍스트의 this를 가리킨다. */
   }
   updated() {
     if (this.state.isSearching) {
