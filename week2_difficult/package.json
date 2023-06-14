@@ -2,6 +2,7 @@
   "name": "movie-app",
   "version": "0.0.1",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "webpack",
     "dev": "webpack serve"
   },
